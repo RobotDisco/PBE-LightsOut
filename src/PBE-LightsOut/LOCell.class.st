@@ -1,0 +1,41 @@
+"
+I represent a Lights Out Game Cell.
+
+I know my own colour and I can change that colour.
+
+I am told by the Lights Out Game to  change my colour if my neighbouring cell was clicked.
+"
+Class {
+	#name : #LOCell,
+	#superclass : #SimpleSwitchMorph,
+	#instVars : [
+		'mouseAction'
+	],
+	#category : #'PBE-LightsOut'
+}
+
+{ #category : #initialization }
+LOCell >> initialize [
+	super initialize.
+	self label: ''.
+	self borderWidth: 2.
+	bounds := 0 @ 0 corner: 16 @ 16.
+	offColor := Color paleYellow.
+	onColor := Color paleBlue darker.
+	self useSquareCorners.
+	self turnOff
+]
+
+{ #category : #accessing }
+LOCell >> mouseAction: aBlock [
+	^ mouseAction := aBlock
+]
+
+{ #category : #'event handling' }
+LOCell >> mouseMove: anEvent [
+]
+
+{ #category : #'event handling' }
+LOCell >> mouseUp: anEvent [
+	mouseAction value
+]
